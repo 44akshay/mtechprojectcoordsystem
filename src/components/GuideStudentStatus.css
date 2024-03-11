@@ -1,0 +1,43 @@
+/* GuideStudentStatus.css */
+
+.guide-student-status {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  .student-info p {
+    margin: 0;
+  }
+  
+  .phases {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .phase {
+    flex-grow: 1;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .phase.active {
+    background-color: green;
+    color: white;
+  }
+  

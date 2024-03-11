@@ -1,0 +1,56 @@
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+  }
+  
+  .login-form {
+    border: 2px solid #3498db;
+    background-color: #fff; /* Set background color as needed */
+    padding: 20px;
+    max-width: 300px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  }
+  
+  .login-form h2 {
+    margin-bottom: 20px; /* Increase margin for spacing */
+    color: #333; /* Adjust text color */
+  }
+  
+  .login-form input {
+    width: calc(100% - 16px); /* Adjust the input width */
+    margin-bottom: 15px; /* Increase margin for spacing */
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc; /* Add a border to input fields */
+    border-radius: 4px; /* Add border-radius for rounded corners */
+  }
+  
+  .login-form select {
+    width: 95%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px; /* Add border-radius for rounded corners */
+  }
+  
+  .forgot-password {
+    margin-top: 15px; /* Increase margin for spacing */
+    color: #555;
+    cursor: pointer;
+  }
+  
