@@ -1,0 +1,31 @@
+/* menu.css */
+
+.menu-sidebar {
+    background-color: green;
+    color: white;
+    padding: 20px;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column; /* Display menu items in a column */
+    position: fixed;
+    width: 200px;
+    top: 0;
+    left: 0;
+    height: 100vh; /* Set height to 100% of the viewport height */
+  }
+  
+  .menu-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu-sidebar li {
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-weight: bold; /* Make the text bold */
+    font-size: 18px; /* Set the font size to your desired value */
+  }
+  
+  /* Add any additional styles as needed */
+  

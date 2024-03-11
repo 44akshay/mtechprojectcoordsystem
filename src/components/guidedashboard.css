@@ -1,0 +1,28 @@
+/* guidedashboard.css */
+
+.guidedashboard {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    justify-content: center;
+ }
+  
+  .guidedashboard div {
+    margin: 10px; /* Adjust the margin as needed for spacing */
+    padding: 10px; /* Adjust the padding as needed for spacing */
+    height: fit-content;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #f0ca20; /* Default background color */
+    color: black; /* Default text color */
+  }
+  
+  .guidedashboard div:hover {
+    background-color: #e0b317; /* Hover background color */
+  }
+  
+  .guidedashboard div.selected {
+    background-color: rgb(240, 202, 32);
+    color: green;
+  }
+  
