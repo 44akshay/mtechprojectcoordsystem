@@ -1,6 +1,11 @@
 .header-container {
     border-bottom: 2px solid #3498db; /* Set border color as needed */
     padding: 10px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 200;
+    background-color: white;
   }
   
   .header-content {
@@ -10,6 +15,8 @@
   }
   
   .project-info {
+    display: flex;
+    margin-left: 15px;
     flex-grow: 1;
   }
   
@@ -31,6 +38,8 @@
   }
   
   .logo-container {
+    text-align: center;
+    margin-left: 20px;
     width: 40px; /* Adjust the width of the logo container as needed */
   }
   

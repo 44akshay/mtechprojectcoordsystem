@@ -2,13 +2,19 @@ import React, { useState } from 'react';
 import './guidedashboard.css';
 import ScheduleMeeting from './ScheduleMeeting';
 import GuideStudentStatus from './GuideStudentStatus';
+import GuideStudentForm from './GuideStudentForm';
 
+const AddStudent = () => (
+    <div>
+        <GuideStudentForm/>
+    </div>
+  );
 
 const StudentStatus = () => (
   <div>
     <GuideStudentStatus/>
   </div>
-);
+);  
 
 const ScheduleMeetings = () => (
   <div>
@@ -26,11 +32,17 @@ const GuideDashboard = () => {
   return (
     <div>
       <div className='guidedashboard'>
+      <div
+          className={currentScreen === 'addstudent' ? 'selected' : ''}
+          onClick={() => handleButtonClick('addstudent')}
+        >
+            Add Student
+        </div>
         <div
           className={currentScreen === 'studentstatus' ? 'selected' : ''}
           onClick={() => handleButtonClick('studentstatus')}
         >
-          Student status
+          Student Status
         </div>
         <div
           className={currentScreen === 'scedulemeeting' ? 'selected' : ''}
@@ -39,7 +51,7 @@ const GuideDashboard = () => {
           Schedule Meeting
         </div>
       </div>
-
+      {currentScreen === 'addstudent' && <AddStudent />}
       {currentScreen === 'studentstatus' && <StudentStatus />}
       {currentScreen === 'scedulemeeting' && <ScheduleMeetings />}
     </div>
