@@ -1,0 +1,60 @@
+/* styles.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .phases-tab {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .phase {
+    flex-grow: 1;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .phase.active {
+    background-color: #f0ca20;
+    color: green;
+  }
+  
+  .phase-component {
+    margin-top: 20px;
+    width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .submission-status {
+    margin-bottom: 10px;
+  }
+  
+  .upload-file {
+    margin-bottom: 10px;
+  }
+  
+  .submit-button {
+    background-color: green;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: rgb(5, 172, 22);
+  }
+  

@@ -1,0 +1,70 @@
+/* projectform.css */
+
+.project-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 20px auto;
+  }
+  
+  label {
+    margin-bottom: 8px;
+  }
+  
+  input,
+  select,
+  button {
+    margin-bottom: 16px;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .category-section {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .selected-categories {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .category {
+    background-color: #e44d26; /* Red background */
+    color: #fff;
+    padding: 5px 10px;
+    margin: 4px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .category button {
+    background-color: #c5371d; /* Darker red background for the remove button */
+    color: #fff;
+    margin-left: 5px;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+  }
+  
+  /* Submit button styling */
+  button[type="button"] {
+    background-color:   green; /* Green background for the submit button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  

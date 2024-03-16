@@ -1,0 +1,15 @@
+/* messagebox.css */
+
+.message-box {
+    background-color: #ffcc00; /* Yellow background */
+    color: #c00; /* Dark red text color */
+    padding: 10px;
+    border: 2px solid #c00; /* Dark red border */
+    border-radius: 5px;
+    margin: 20px auto; /* Center horizontally */
+    max-width: 400px; /* Set a maximum width for better readability */
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+  }
+  

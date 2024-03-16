@@ -1,16 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {  useNavigate } from 'react-router-dom';
 import './login.css'; // Import the login.css file
+import { useAuthStateValue } from '../context/AuthStateProvider';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [selectedRole, setSelectedRole] = useState('student'); // Default role is 'student'
+  const [{ user }, dispatch] = useAuthStateValue();
+  const navigate = useNavigate()
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Redirect to '/' if token exists
+      navigate('/')
+    }
+  }, []); // Run only once after component mounts
 
-  const handleLogin = () => {
-    // Handle login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Selected Role:', selectedRole);
+  const handleLogin = async () => {
+    try {
+      // Prepare data to be sent in the request body
+      const data = {
+        username: email,
+        password: password
+      };
+
+      // Make the API call
+      const response = await fetch('http://127.0.0.1:8000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      // Check if response is successful
+      if (response.ok) {
+        // Parse response body as JSON
+        const responseData = await response.json();
+        localStorage.setItem('token', responseData.token);
+        dispatch({ type: "LOGIN", payload: responseData });
+
+        console.log('Login response:', responseData);
+        
+        // Redirect to '/' URL after successful login
+        navigate('/');
+      } else {
+        // Handle error scenario
+        console.error('Login failed');
+      }
+    } catch (error) {
+      // Handle network errors or other exceptions
+      console.error('Error:', error.message);
+    }
   };
 
   return (
@@ -29,16 +70,6 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <select
-          value={selectedRole}
-          onChange={(e) => setSelectedRole(e.target.value)}
-        >
-          <option value="student">Student</option>
-          <option value="guide">Guide</option>
-          <option value="chairperson">Chairperson</option>
-          <option value="coordinator">Coordinator</option>
-          <option value="expert">Expert</option>
-        </select>
         <button onClick={handleLogin}>Login</button>
         <p className="forgot-password">Forgot Password?</p>
       </div>
