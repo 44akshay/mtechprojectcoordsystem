@@ -3,7 +3,8 @@ import './phase.css';
 import PhaseComponent from './PhaseComponent';
 import CloseIcon from '@mui/icons-material/Close';
 
-const PhasePopup = ({ isOpen, onClose, data, phase }) => {
+const PhasePopup = ({ isOpen, onClose, data, phase,rollno }) => {
+
   return (
     <>
     
@@ -11,8 +12,7 @@ const PhasePopup = ({ isOpen, onClose, data, phase }) => {
         <div className="modal">
           <div className="modal-content">
           <div className='close'  onClick={()=>onClose()}><CloseIcon/></div>
-    
-            <PhaseComponent data={data} phase={phase} />
+            <PhaseComponent data={data} phase={phase} rollno={rollno} close={onClose} />
           </div>
         </div>
       )}

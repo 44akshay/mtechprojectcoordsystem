@@ -4,7 +4,7 @@ import { Popupbox } from './Popupbox';
 import { Studentinfo } from './Studentinfo';
 import { useAuthStateValue } from '../context/AuthStateProvider';
 import CommiteeCreation from './CommiteeCreation';
-const StudentList = () => {
+const StudentList = ({firstname,rollno}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [{ user }, authdispatch] = useAuthStateValue();
   
@@ -20,8 +20,8 @@ const StudentList = () => {
     <div>
         <div className='studlist'>
           <div>
-            <p>Akshay Nair Sunilkumar</p>
-            <p>M230609cs</p>
+            <p>{firstname}</p>
+            <p>{rollno}</p>
            {(user && user.role==="Coordinator")? <div onClick={()=>handleOpen()} style={{fontSize:"10px"}}>Create Committee</div>:<div onClick={()=>handleOpen()}>Get Info</div>}
             </div>
         </div>
@@ -30,7 +30,7 @@ const StudentList = () => {
         <Popupbox isOpen={isOpen} onClose={handleClose} component={Studentinfo} data={{ onClose: handleClose }} />
         }
     </div>
-  )
+  ) 
 }
 
 export default StudentList
