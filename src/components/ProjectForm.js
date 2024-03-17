@@ -57,12 +57,10 @@ const ProjectForm = ({ guideName }) => {
 
     if (response.ok) {
       setIsLoading(false);
-      console.log("hi")
       window.location.reload();
 
     } else {
       setIsLoading(false);
-      console.log("hi")
       setError(`Error: ${response.statusText}`);
     }
   };

@@ -2,13 +2,13 @@
   import './phase.css';
   import phaseimg from '../assets/phaseimg.jpg';
   import PhaseComponent from './PhaseComponent';
-import PhasePopup from './PhasePopup';
+  import PhasePopup from './PhasePopup';
 
-  const PhasesTab = ({phaseno,phasesData}) => {
+  const PhasesTab = ({phaseno,phasesData,rollno}) => {
     const [isPopupOpen, setPopupOpen] = useState(false);
+    console.log(phasesData)
     
     useEffect(() => {
-      console.log(isPopupOpen); // This will log the updated value of isPopupOpen after the state has been updated
     }, [isPopupOpen]);
 
     const handlePopupOpen = () => {
@@ -32,7 +32,7 @@ import PhasePopup from './PhasePopup';
             </div>
           </div>
         </div>
-        <PhasePopup isOpen={isPopupOpen} onClose={handlePopupClose} data={phasesData} phase={phaseno} />
+        <PhasePopup isOpen={isPopupOpen} onClose={handlePopupClose} data={phasesData} phase={phaseno} rollno={rollno} />
       </div>
     );
   };
