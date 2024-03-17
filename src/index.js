@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import {  Navigate, RouterProvider, createBrowserRouter, useNavigate } from 'react-router-dom';
+import {  Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Header } from './components/Header';
 import StudentList from './components/StudentList';
 import Login from './components/Login';
@@ -14,15 +14,17 @@ import PhasesTab from './components/PhaseTab';
 import './index.css'
 import { StateProvider } from './components/StatePovider';
 import reducer, { initialState } from './components/reducer';
+import MessageBox from './components/MessageBox';
+import CoordinatorDashboard from './components/CoordinatorDashboard';
+import { Chairperson } from './components/Chairperson';
 
 function Index() {
   const [{ user }, authdispatch] = useAuthStateValue();
   const [loading, setLoading] = useState(true); // Introduce loading state
   const [selectedDashboard, setSelectedDashboard] = useState(null);
-
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    if (token) {  
       fetchUser(token);
     } else {
       setLoading(false); // Update loading state if token is not present
@@ -73,11 +75,19 @@ function Index() {
       case 'Student':
         dashboardElement = <StudentDashboard />;
         break;
-      case 'Faculty':
+      case 'Guide':
         dashboardElement = <GuideDashboard />;
         break;
+      case 'Chairperson':
+        dashboardElement = <Chairperson/>;
+        break;
+      case 'Coordinator':
+        dashboardElement =<CoordinatorDashboard/>;
+        break;
       default:
-        return <Navigate to="/login" />;
+        dashboardElement = <div><MessageBox message={"please select your role from the above dropdown"}/></div>;
+
+        
     }
   }
   

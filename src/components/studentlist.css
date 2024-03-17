@@ -1,20 +1,24 @@
 .studlist {
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
-    justify-content: space-between; /* Distribute items along the main axis with space in between */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items along the main axis */
+    align-items: center; /* Center items horizontally */
     padding: 10px;
-    margin: 10px;
-    background-color: rgb(240, 202, 32);
+    margin: 10px auto; /* Set margin to auto for horizontal centering */
+    background-color: darkblue;
     max-width: 500px; /* Set a maximum width for the container */
-    border-radius: 100px;
+    height: 30px; /* Set a fixed height */
+    border-radius: 20px;
+    text-align: center;
 }
 
 .studlist div {
     padding: 5px;
     margin: 5px;
-    background-color: green;
     border-radius: 100px;
     color: white;
+    display: flex;
+    align-items: center; /* Center items horizontally within the div */
 }
 
 .studlist p {
@@ -24,9 +28,18 @@
 
 .studlist p:first-child {
     flex: 1; /* Let the name take as much space as possible */
-    min-width: 0; /* Allow the name to shrink if necessary */
+    min-width: 250px; /* Allow the name to shrink if necessary */
+    text-align: left; /* Align the name text to the left */
 }
 
-.studlist div {
-    flex-shrink: 0; /* Don't allow "Get Info" to shrink */
+.studlist div:last-child {
+    min-width: 50px; /* Set a fixed width for the roll number */
+    justify-content: center; /* Center content horizontally */
+}
+
+.studlist div:last-child div {
+    background-color: white;
+    color: darkblue;
+    cursor: pointer;
+    padding: 8px 12px; /* Adjust padding for better appearance */
 }

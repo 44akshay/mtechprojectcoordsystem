@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './chairperson.css';
 
-const Chairperson = () => {
+export const Chairperson = () => {
     const [formData, setFormData] = useState({
         marks: '',
         comments: '',
@@ -79,5 +79,3 @@ const Chairperson = () => {
         </div>
     );
 };
-
-export default Chairperson;

@@ -1,11 +1,57 @@
 /* styles.css */
+.box-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.box-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Rest of your styles remain the same */
+
+.phase-details {
+  margin-top: 10px;
+}
+
+.date {
+  font-size: 14px;
+  font-weight: lighter;
+}
+
 
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 300px;
+    width:300px;
+    box-shadow: 10px;
+    background-color: red;
   }
   
   .phases-tab {
@@ -57,4 +103,50 @@
   .submit-button:hover {
     background-color: rgb(5, 172, 22);
   }
-  
+  /* phase.css */
+
+/* Modal styles */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 100%;
+  max-height: 100%; /* Limiting the height */
+  overflow-y: auto; /* Adding scroll if content overflows */
+}
+
+.close {
+  position: relative;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+
+}
+
+/* PhaseComponent styles */
+.phase-component {
+  margin-top: 20px;
+}
+
+.submission-status {
+  font-weight: bold;
+}
+
+.evaluation,
+.evaluation-comments,
+.report-comments {
+  margin-top: 10px;
+}

@@ -6,7 +6,7 @@
   }
   
   .login-form {
-    border: 2px solid #3498db;
+    border: 2px solid darkblue;
     background-color: #fff; /* Set background color as needed */
     padding: 20px;
     max-width: 300px;
@@ -41,7 +41,7 @@
   .login-form button {
     width: 100%;
     padding: 10px;
-    background-color: #4caf50;
+    background-color: darkblue;
     color: white;
     cursor: pointer;
     border: none;

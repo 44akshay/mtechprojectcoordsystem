@@ -10,7 +10,7 @@
   left: 0;
   height: 100vh;
   z-index: 99;
-  border: 1px solid gray;
+  border: 1px solid darkblue;
   background-color: white;
   transition: transform 0.5s ease; /* Add transition for smooth sliding effect */
   transform: translateX(-100%);

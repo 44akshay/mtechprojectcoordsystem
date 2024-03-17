@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MessageBox from './MessageBox';
 import ProjectForm from './ProjectForm';
 import PhasesTab from './PhaseTab';
+import { TailSpin } from 'react-loader-spinner';
 
 const StudentDashboard = () => {
     const [loading, setLoading] = useState(true);
@@ -15,7 +16,7 @@ const StudentDashboard = () => {
         const token = localStorage.getItem('token');
         const fetchData = async () => {
             try {
-                const apiUrl = 'http://localhost:8000/students';
+                const apiUrl = 'http://localhost:8000/students/';
                 const response = await fetch(apiUrl, {
                     headers: {
                       Authorization: `Token ${token}`
@@ -35,6 +36,7 @@ const StudentDashboard = () => {
                   setGuideName(data.project.guide.name);
               }
               if (data.project) {
+                console.log(data.project);
                 setPhasesData(data.project);
             }
                 setLoading(false); // Set loading to false after data is fetched
@@ -48,7 +50,7 @@ const StudentDashboard = () => {
     }, []); // Empty dependency array to ensure it only runs once on mount
 
     if (loading) {
-        return <div>Loading...</div>; // Display a loading indicator
+        return <div style={{height:"100%",textAlign:"center",display:"flex",justifyContent:"center",alignItems:"center"}}><TailSpin color='darkblue'/></div>; // Display a loading indicator
     }
 
     return (
@@ -66,9 +68,14 @@ const StudentDashboard = () => {
                 </>
             ) : ""}
 
-            {isguideSelected==="False" && hasUploadedDetails==="True" ? (
+            {isguideSelected==="True" && hasUploadedDetails==="True" ? (
                 <>
-                    <PhasesTab phasesData={phasesData} />
+                <h1 style={{textAlign:"center"}}>Phases of the project</h1>
+                <div style={{display:"flex", justifyContent:"center",marginLeft:"100px"}}>
+                    <PhasesTab phaseno={1} phasesData={phasesData.Phase1}/>
+                    <PhasesTab phaseno={2} phasesData={phasesData.Phase2}/>
+                    <PhasesTab phaseno={3} phasesData={phasesData.Phase3}/>
+                </div>
 
                 </>
             ) : ""}

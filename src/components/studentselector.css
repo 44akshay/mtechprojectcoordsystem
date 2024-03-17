@@ -1,0 +1,33 @@
+/* StudentSelectorStyles.css */
+
+.studselectcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+  }
+  
+  .select-wrapper {
+    width: 300px; /* Adjust width as needed */
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 8px; /* Adjust the border radius */
+    overflow: hidden;
+  }
+  
+  .select-wrapper select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    appearance: none;
+  }
+  
+  /* Optional: Smooth transition for better appearance */
+  .select-wrapper select:focus {
+    outline: none;
+    border-color: darkblue; /* Change color as needed */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Change shadow color and size as needed */
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
