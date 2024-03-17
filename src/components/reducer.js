@@ -1,5 +1,6 @@
 export const initialState = {
-    togglemodal: true,
+    togglemodal: false,
+    activemenu:null
 }
 const reducer = (state, action) => {
     switch (action.type) {
@@ -7,6 +8,11 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 togglemodal: !state.togglemodal
+            }
+        case "CHANGE_ACTIVE":
+            return {
+                ...state,
+                activemenu:action.payload
             }
         
         default: return {

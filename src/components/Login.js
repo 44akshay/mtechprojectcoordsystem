@@ -7,6 +7,8 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [{ user }, dispatch] = useAuthStateValue();
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate()
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -41,7 +43,7 @@ const Login = () => {
         dispatch({ type: "LOGIN", payload: responseData });
 
         console.log('Login response:', responseData);
-        
+        window.location.reload()
         // Redirect to '/' URL after successful login
         navigate('/');
       } else {

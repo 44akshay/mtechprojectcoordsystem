@@ -1,33 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import './phase.css';
-import PhaseComponent from './PhaseComponent';
+  import React, { useState, useEffect } from 'react';
+  import './phase.css';
+  import phaseimg from '../assets/phaseimg.jpg';
+  import PhaseComponent from './PhaseComponent';
+import PhasePopup from './PhasePopup';
 
-const PhasesTab = ({ phasesData }) => {
-  const [activePhase, setActivePhase] = useState(1);
-  
-  const handlePhaseClick = (phase) => {
-    setActivePhase(phase);
+  const PhasesTab = ({phaseno,phasesData}) => {
+    const [isPopupOpen, setPopupOpen] = useState(false);
+    
+    useEffect(() => {
+      console.log(isPopupOpen); // This will log the updated value of isPopupOpen after the state has been updated
+    }, [isPopupOpen]);
+
+    const handlePopupOpen = () => {
+      setPopupOpen(true);
+    };
+
+    const handlePopupClose = () => {
+      setPopupOpen(false);
+    };
+    
+
+    return (
+      <div className="center-container">
+        <div onClick={()=>handlePopupOpen()}  className="box-container">
+          <div className="box">
+            <img src={phaseimg} alt="Phase" className="image" />
+            <div className="phase-details">
+              <h3>Phase {phaseno}</h3>
+              <p className="date">Start Date: </p>
+              <p className="date">End Date: </p>
+            </div>
+          </div>
+        </div>
+        <PhasePopup isOpen={isPopupOpen} onClose={handlePopupClose} data={phasesData} phase={phaseno} />
+      </div>
+    );
   };
 
-  return (
-    <div className="container">
-      <div className="phases-tab">
-        {Object.keys(phasesData).filter(key => key.startsWith('Phase')).map((phaseKey, index) => (
-          <div key={index} className={`phase ${activePhase === index + 1 ? 'active' : ''}`} onClick={() => handlePhaseClick(index + 1)}>Phase {index + 1}</div>
-        ))}
-      </div>
-      { activePhase===1 && phasesData[`Phase${1}`] && (
-        <PhaseComponent phase={1} data={phasesData[`Phase${1}`]} />
-      )}
-      {activePhase===2 && phasesData[`Phase${2}`] && (
-        <PhaseComponent phase={2} data={phasesData[`Phase${2}`]} />
-      )}
-      {activePhase===3 && phasesData[`Phase${3}`] && (
-        <PhaseComponent phase={3} data={phasesData[`Phase${3}`]} />
-      )}
-
-    </div>
-  );
-};
-
-export default PhasesTab;
+  export default PhasesTab;

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './phase.css';
+import CloseIcon from '@mui/icons-material/Close';
 
-const PhaseComponent = ({ data, phase }) => {
+const PhaseComponent = ({ data, phase}) => {
   const [file, setFile] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 

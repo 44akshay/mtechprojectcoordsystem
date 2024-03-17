@@ -3,24 +3,9 @@ import './guidedashboard.css';
 import ScheduleMeeting from './ScheduleMeeting';
 import GuideStudentStatus from './GuideStudentStatus';
 import GuideStudentForm from './GuideStudentForm';
+import StudentList from './StudentList';
 
-const AddStudent = () => (
-    <div>
-        <GuideStudentForm/>
-    </div>
-  );
 
-const StudentStatus = () => (
-  <div>
-    <GuideStudentStatus/>
-  </div>
-);  
-
-const ScheduleMeetings = () => (
-  <div>
-    <ScheduleMeeting/>
-  </div>
-);
 
 const GuideDashboard = () => {
   const [currentScreen, setCurrentScreen] = useState('studentstatus');
@@ -31,29 +16,12 @@ const GuideDashboard = () => {
 
   return (
     <div>
-      <div className='guidedashboard'>
-      <div
-          className={currentScreen === 'addstudent' ? 'selected' : ''}
-          onClick={() => handleButtonClick('addstudent')}
-        >
-            Add Student
-        </div>
-        <div
-          className={currentScreen === 'studentstatus' ? 'selected' : ''}
-          onClick={() => handleButtonClick('studentstatus')}
-        >
-          Student Status
-        </div>
-        <div
-          className={currentScreen === 'scedulemeeting' ? 'selected' : ''}
-          onClick={() => handleButtonClick('scedulemeeting')}
-        >
-          Schedule Meeting
-        </div>
+      <div style={{textAlign:"center"}} className='guidedashboard'>
+        <div style={{display:"flex", justifyContent:"center",alignItems:"self-end"}}><h1>Students under me:</h1><small>(maximum allowed:2)</small></div>
+        <StudentList/>
+        <StudentList/>
       </div>
-      {currentScreen === 'addstudent' && <AddStudent />}
-      {currentScreen === 'studentstatus' && <StudentStatus />}
-      {currentScreen === 'scedulemeeting' && <ScheduleMeetings />}
+      
     </div>
   );
 };

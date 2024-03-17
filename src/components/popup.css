@@ -1,0 +1,27 @@
+
+  
+  .popup-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff; /* White background for the popup box */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 100px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border: 2px solid white;
+  }
+  .close-btn{
+    background-color: red;
+    color: white;
+  }
+  .popup-container.show {
+    display: block;
+  }
+  

@@ -42,7 +42,7 @@
   /* Button styling */
   button {
     padding: 10px 20px;
-    background-color: #4caf50;
+    background-color: darkblue;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -51,6 +51,6 @@
   }
   
   button:hover {
-    background-color: #45a049;
+    background-color: rgb(17, 17, 204);
   }
   
