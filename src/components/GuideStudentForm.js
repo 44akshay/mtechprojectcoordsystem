@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './guidestudentform.css';
 import Select from 'react-dropdown-select';
+import { TailSpin } from 'react-loader-spinner';
+import { PopupMessage } from './PopupMessage';
 
 const GuideStudentForm = () => {
   const [facultyList, setFacultyList] = useState([]);
@@ -9,7 +11,15 @@ const GuideStudentForm = () => {
   const [selectedCommitteeMember1, setSelectedCommitteeMember1] = useState(null);
   const [selectedCommitteeMember2, setSelectedCommitteeMember2] = useState(null);
   const [selectedRollNumber, setSelectedRollNumber] = useState('');
-  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [isopen,setisopen]=useState(false)
+  const [error,setError]=useState('')
+
+  const onClose=()=>{
+    setisopen(false);
+    setError('')
+  }
+
 
 
   useEffect(() => {
@@ -25,7 +35,7 @@ const GuideStudentForm = () => {
           const data = await response.json();
           const formattedOptions = data.faculty.map((item, index) => ({
             value: index + 1,
-            label: `${item.name} ${item.email}`,
+            label: `${item.email}`,
           }));
           setFacultyList(formattedOptions);
         } else {
@@ -50,7 +60,6 @@ const GuideStudentForm = () => {
             value: index + 1,
             label: `${item.rollNoId}`,
           }));
-          console.log(formattedOptions)
           setStudentList(formattedOptions);
         } else {
           throw new Error('Failed to fetch student data');
@@ -74,28 +83,33 @@ const GuideStudentForm = () => {
     setSelectedRollNumber(value);
   };
   const handleSubmit = async (event) => {
+    setLoading(true)
     const token = localStorage.getItem('token');
     const data = {
-      rollno: selectedRollNumber[0].label,
-      sugchair: selectedChairperson?.email,
-      sugmem1: selectedCommitteeMember1?.email,
-      sugmem2: selectedCommitteeMember2?.email
+      rollno: selectedRollNumber?selectedRollNumber[0].label:"",
+      sugchair: selectedChairperson?selectedChairperson[0].label:"",
+      sugmem1: selectedCommitteeMember1?selectedCommitteeMember1[0].label:"",
+      sugmem2: selectedCommitteeMember2?selectedCommitteeMember2[0].label:""
     };
 
-  // if (!selectedRollNumber || !selectedChairperson.email || !selectedCommitteeMember1.email || !selectedCommitteeMember2.email) {
-  //   setError('All fields are required.');
-  //   return;
-  // }
-
-  // // Check if any email is the same
-  // if (
-  //   selectedChairperson.email === selectedCommitteeMember1.email ||
-  //   selectedChairperson.email === selectedCommitteeMember2.email ||
-  //   selectedCommitteeMember1.email === selectedCommitteeMember2.email
-  // ) {
-  //   setError('Emails should be unique.');
-  //   return;
-  // }
+   console.log(selectedChairperson[0].label)
+  if (selectedRollNumber==='' || selectedChairperson.email===null || !selectedCommitteeMember1.email===null || !selectedCommitteeMember2.email===null) {
+    setisopen(true)
+    setError('All fields are required.');
+    setLoading(false)
+    return;
+  }
+  if (
+    selectedChairperson[0].label === selectedCommitteeMember1[0].label ||
+    selectedChairperson[0].label === selectedCommitteeMember2[0].label ||
+    selectedCommitteeMember1[0].label === selectedCommitteeMember2[0].label
+  ) {
+    console.log(selectedChairperson.email,selectedCommitteeMember1.email,selectedCommitteeMember2.email)
+    setisopen(true)
+    setError('Email should be unique');
+    setLoading(false)
+    return;
+  }
 
     try {
       const response = await fetch('http://127.0.0.1:8000/faculty/addmystudent/', {
@@ -107,8 +121,19 @@ const GuideStudentForm = () => {
         body: JSON.stringify(data)
       });
       if (response.ok) {
+        setLoading(false)
+        setisopen(true)
+        setError("Student is added successfully")
+        setSelectedRollNumber('');
+        setSelectedChairperson(null)
+        setSelectedCommitteeMember1(null)
+        setSelectedCommitteeMember2(null)
         console.log('Student data added successfully.');
       } else {
+        const data=await response.json();
+        setLoading(false)
+        setisopen(true)
+        setError("error: "+data.message)
         throw new Error('Failed to add student data');
       }
     } catch (error) {
@@ -177,9 +202,11 @@ const GuideStudentForm = () => {
            />
       </div>
 
-      {/* Add submit button */}
-      <button type="submit" style={{backgroundColor:"darkblue",color:"white"}} onClick={()=>{handleSubmit()}}>Submit</button>
-      {error && <div className="error-message">{error}</div>}
+      {loading?<div style={{display:"flex",justifyContent:"center"}}>
+        <TailSpin color='darkblue' />
+        </div>:<button type="submit" style={{backgroundColor:"darkblue",color:"white"}} onClick={()=>{handleSubmit()}}>Submit</button>}
+        <PopupMessage isOpen={isopen} onClose={onClose} message={error} />
+      
     </div>
   );
 };

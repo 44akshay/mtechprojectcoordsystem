@@ -19,6 +19,9 @@ import ScheduleMeeting from './ScheduleMeeting';
 import StudentSelector from './StudentSelector';
 import MessageBox from './MessageBox';
 import { useAuthStateValue } from '../context/AuthStateProvider';
+import ViewGrades from './ViewGrades';
+import { CoordinatorDashboard } from './CoordinatorDashboard';
+import { StudentSelectorChair } from './StudentSelectorChair';
 
 
 const Menu =({ role, changeDashboard })=> {
@@ -106,7 +109,10 @@ const Menu =({ role, changeDashboard })=> {
     case 'Chairperson':
       menuItems = (
         <ul>
-          <li className={activeMenuItem === 'Dashboard' ? 'menu-item active' : 'menu-item'} onClick={() => handleMenuItemClick('Dashboard')}>Dashboard</li>
+          <li className={activeMenuItem === 'Dashboard' ? 'menu-item active' : 'menu-item'} onClick={() =>{
+             handleMenuItemClick('Dashboard')
+             handleDashboardChange(<StudentSelectorChair/>)
+             }}>Dashboard</li>
           <li className={activeMenuItem === 'Reports' ? 'menu-item active' : 'menu-item'} onClick={() => handleMenuItemClick('Reports')}>Reports</li>
           <li className={activeMenuItem === 'Logout' ? 'menu-item active' : 'menu-item'} onClick={() => handleMenuItemClick('Logout')}>Logout</li>
         </ul>
@@ -115,8 +121,15 @@ const Menu =({ role, changeDashboard })=> {
     case 'Coordinator':
       menuItems = (
         <ul>
-          <li className={activeMenuItem === 'Dashboard' ? 'menu-item active' : 'menu-item'} onClick={() => handleMenuItemClick('Dashboard')}>Dashboard</li>
-          <li className={activeMenuItem === 'Manage Courses' ? 'menu-item active' : 'menu-item'} onClick={() => handleMenuItemClick('Manage Courses')}>Manage Courses</li>
+          <li className={activeMenuItem === 'Dashboard' ? 'menu-item active' : 'menu-item'} onClick={() => {
+            handleMenuItemClick('Dashboard')
+            handleDashboardChange(<CoordinatorDashboard/>)
+            }}>Dashboard</li>
+          <li className={activeMenuItem === 'Manage Courses' ? 'menu-item active' : 'menu-item'} 
+          onClick={() =>{
+             handleMenuItemClick('Manage Courses')
+             handleDashboardChange(<ViewGrades/>)
+             }}>View Grades</li>
           <li className={activeMenuItem === 'Logout' ? 'menu-item active' : 'menu-item'} onClick={() => handleMenuItemClick('Logout')}>Logout</li>
         </ul>
       );
