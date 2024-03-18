@@ -10,7 +10,8 @@ const PhaseComponent = ({ data, phase,rollno,close}) => {
   const [comments, setComments] = useState('');
   const [reportUploaded, setReportUploaded] = useState(data.Report !== null);
   const [status, setstatus] = useState(data.Status);
-
+  const [evaluationMarks, setEvaluationMarks] = useState('');
+  const [evaluationComments, setEvaluationComments] = useState('');
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
@@ -155,6 +156,37 @@ const PhaseComponent = ({ data, phase,rollno,close}) => {
 
   };
 
+  const handleChairpersonSubmit = async () => {
+    const formData = {
+      rollNoId: rollno,
+      phase: phase+"",
+      marks: parseInt(evaluationMarks), // Convert to integer
+      comments: evaluationComments
+    };
+
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch('http://localhost:8000/chairperson/givemarks/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        // Handle success, maybe close the form or show a success message
+        console.log('Evaluation submitted successfully');
+      } else {
+        // Handle failure, maybe show an error message
+        console.error('Failed to submit evaluation');
+      }
+    } catch (error) {
+      console.error('Error submitting evaluation:', error);
+    }
+  };
+
   
 
   return (
@@ -205,6 +237,19 @@ const PhaseComponent = ({ data, phase,rollno,close}) => {
             <div>Student has not uploaded the report yet</div>
           )}
        </>
+      )}
+       {data && user && user.role==="Chairperson" &&  (
+        <form onSubmit={handleChairpersonSubmit}>
+          <div>
+            <label htmlFor="evaluationMarks">Evaluation Marks:</label>
+            <input type="number" id="evaluationMarks" value={evaluationMarks} onChange={(e) => setEvaluationMarks(e.target.value)} />
+          </div>
+          <div>
+            <label htmlFor="evaluationComments">Evaluation Comments:</label>
+            <textarea id="evaluationComments" value={evaluationComments} onChange={(e) => setEvaluationComments(e.target.value)} />
+          </div>
+          <button type="submit">Submit Evaluation</button>
+        </form>
       )}
     </div>
   );

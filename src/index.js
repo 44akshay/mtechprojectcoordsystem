@@ -15,8 +15,8 @@ import './index.css'
 import { StateProvider } from './components/StatePovider';
 import reducer, { initialState } from './components/reducer';
 import MessageBox from './components/MessageBox';
-import CoordinatorDashboard from './components/CoordinatorDashboard';
-import { Chairperson } from './components/Chairperson';
+import { CoordinatorDashboard } from './components/CoordinatorDashboard';
+import StudentSelector from './components/StudentSelector';
 
 function Index() {
   const [{ user }, authdispatch] = useAuthStateValue();
@@ -79,7 +79,7 @@ function Index() {
         dashboardElement = <GuideDashboard />;
         break;
       case 'Chairperson':
-        dashboardElement = <Chairperson/>;
+        dashboardElement = <StudentSelector/>
         break;
       case 'Coordinator':
         dashboardElement =<CoordinatorDashboard/>;

@@ -22,11 +22,11 @@ const StudentList = ({firstname,rollno}) => {
           <div>
             <p>{firstname}</p>
             <p>{rollno}</p>
-           {(user && user.role==="Coordinator")? <div onClick={()=>handleOpen()} style={{fontSize:"10px"}}>Create Committee</div>:<div onClick={()=>handleOpen()}>Get Info</div>}
+           {(user && user.role==="Coordinator")? <div onClick={()=>handleOpen()} style={{fontSize:"10px"}}>Committee Details</div>:<div onClick={()=>handleOpen()}>Get Info</div>}
             </div>
         </div>
         {(user && user.role==="Coordinator")?
-        <Popupbox isOpen={isOpen} onClose={handleClose} component={CommiteeCreation} data={{ onClose: handleClose }} />:
+        <Popupbox isOpen={isOpen} onClose={handleClose} component={CommiteeCreation} data={{ rollno: rollno }} />:
         <Popupbox isOpen={isOpen} onClose={handleClose} component={Studentinfo} data={{ onClose: handleClose }} />
         }
     </div>
